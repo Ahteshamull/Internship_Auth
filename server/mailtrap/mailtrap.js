@@ -3,28 +3,28 @@ import dotenv from "dotenv";
 dotenv.config();
 
 
-const TOKEN = "6c3108428ccfd90492e34e08fc8c1a73";
+const TOKEN = process.env.MAILTRAP_TOKEN;
 
-const client = new MailtrapClient({
+export const mailtrapClient = new MailtrapClient({
   token: TOKEN,
 });
 
-const sender = {
+export const sender = {
   email: "hello@demomailtrap.co",
   name: "Mailtrap Test",
 };
-const recipients = [
-  {
-    email: "ahteshamulhasan2@gmail.com",
-  },
-];
+// const recipients = [
+//   {
+//     email: "ahteshamulhasan2@gmail.com",
+//   },
+// ];
 
-client
-  .send({
-    from: sender,
-    to: recipients,
-    subject: "You are awesome!",
-    text: "Congrats for sending test email with Mailtrap!",
-    category: "Integration Test",
-  })
-  .then(console.log, console.error);
+// client
+//   .send({
+//     from: sender,
+//     to: recipients,
+//     subject: "You are awesome!",
+//     html: "Congrats for sending test email with Mailtrap!",
+//     category: "Integration Test",
+//   })
+//   .then(console.log, console.error);
