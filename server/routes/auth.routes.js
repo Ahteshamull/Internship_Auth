@@ -14,4 +14,4 @@ router.get("/logout", (req, res) => {
 
 export default router;
 
-// ========== http://localhost:3000/api/auth/login 
+// ========== http://localhost:3000/api/auth/login ====
