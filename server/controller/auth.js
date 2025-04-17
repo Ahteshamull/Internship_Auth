@@ -1,47 +1,56 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import { generateTokenAndSetCookie } from "../Utils/generateTokenAndSetCookie.js";
 
 export const login = async (req, res) => {
-    const { name, email, password } = req.body;
-    try {
-        if(!name || !email || !password){
-            return res.status(400).json({
-                success: false, 
-                message: "All fields are required"
-            })
-        }
-        const existingUser = await User.findOne({ email });
-        if(existingUser){
-            return res.status(400).json({
-                success: false,
-                message: "User already exists"
-            })
-        }
-        const hashPass = await bcrypt.hash(password, 10);
-        const verifyCode = generateVerificationCode();
-        
-        const user = await User.create({
-          name,
-          email,
-          password: hashPass,
-        });
-        return res.status(200).json({
-            success: true,
-            message: "User created successfully",
-            user
-        })
-       
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message:error.message || "Internal server error"
-        })
+  const { name, email, password } = req.body;
+  try {
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
     }
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User already exists",
+      });
+    }
+    const hashPass = await bcrypt.hash(password, 10);
+    const verificationToken = Math.floor(100000 + Math.random() * 900000)
+      .toString()
+      .padStart(6, "0");;
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashPass,
+     verificationToken,
+      verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
+    });
+      generateTokenAndSetCookie(user._id, res);
+      
+    return res.status(200).json({
+      success: true,
+      message: "User created successfully",
+        user:{
+          ...user._doc,
+          password: undefined
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+  }
 };
 
 export const registration = async (req, res) => {
-    res.send("registration");
+  res.send("registration");
 };
 export const logout = async (req, res) => {
-    res.send("logout");
+  res.send("logout");
 };

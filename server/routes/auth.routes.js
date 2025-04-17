@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { login, logout, registration } from "../controller/auth.js";
 const router = Router();
-router.get("/login", login);
+router.post("/login", login);
 router.get("/registration", registration);
 router.get("/logout", logout);
 
