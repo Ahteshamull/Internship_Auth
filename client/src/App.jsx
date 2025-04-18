@@ -1,9 +1,12 @@
 import React from "react";
 import FloatingShape from "./Components/FloatingShape";
+import { Routes, Route } from "react-router-dom";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900  to-emerald-900 justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900  to-emerald-900 flex items-center justify-center relative overflow-hidden">
       <FloatingShape
         color="bg-green-500"
         size="w-64 h-64"
@@ -25,6 +28,11 @@ export default function App() {
         left="-10%"
         delay={2}
       />
+      <Routes>
+        <Route path="/" element={"Home"}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+      </Routes>
     </div>
   );
 }
