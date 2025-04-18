@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Input from "../Components/Input";
 import { Eye, Lock, Mail, User } from "lucide-react";
 import { Link } from "react-router";
+import PasswordStrengthMeter from "../Components/PasswordStrength";
 
 export default function Signup() {
-  const [data, setData] = React.useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
     console.log(data);
@@ -32,27 +31,27 @@ export default function Signup() {
 
         <form onSubmit={handleSubmit}>
           <Input
-            onChange={handleChange}
+            onChange={(e) => setName(e.target.value)}
             icon={User}
             type="text"
             placeholder="Full Name"
-            value={data.name}
+            value={name}
           />
           <Input
-            onChange={handleChange}
+            onChange={(e) => setEmail(e.target.value)}
             icon={Mail}
             type="email"
             placeholder="Email Address"
-            value={data.email}
+            value={email}
           />
           <Input
-            onChange={handleChange}
+            onChange={(e) => setPassword(e.target.value)}
             icon={Lock}
-            type="text"
+            type="password"
             placeholder="Password"
-            value={data.password}
+            value={password}
           />
-
+          <PasswordStrengthMeter password={password} />
           <motion.button
             className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
 						font-bold rounded-lg shadow-lg hover:from-green-600
@@ -61,14 +60,19 @@ export default function Signup() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-          >Sign Up</motion.button>
+          >
+            Sign Up
+          </motion.button>
         </form>
-          </div>
-          <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center ">
-              <p className="text-sm text-gray-400">Already have an account? <Link to={"/login"} className="text-green-500 hover:underline">
-              Login
-              </Link></p>
-          </div>
+      </div>
+      <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center ">
+        <p className="text-sm text-gray-400">
+          Already have an account?{" "}
+          <Link to={"/login"} className="text-green-500 hover:underline">
+            Login
+          </Link>
+        </p>
+      </div>
     </motion.div>
   );
 }
