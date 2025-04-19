@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useAuthStore } from "../Store/authStore";
+import { formatDate } from "../Utils/date";
 
 const Home = () => {
   const { user, logout } = useAuthStore();
@@ -52,7 +53,7 @@ const Home = () => {
           <p className="text-gray-300">
             <span className="font-bold">Last Login: </span>
 
-            {/* {formatDate(user.lastLogin)} */}
+            {formatDate(user.lastLogin)}
           </p>
         </motion.div>
       </div>
