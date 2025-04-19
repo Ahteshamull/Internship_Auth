@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { useAuthStore } from "../Store/authStore";
+import  toast  from "react-hot-toast";
+
 export default function VerifyEmail() {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const isLoading = false;
   const inputRef = useRef([]);
   const navigate = useNavigate();
+
+  const { verifyEmail, error, isLoading } = useAuthStore();
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -34,11 +38,19 @@ export default function VerifyEmail() {
       inputRef.current[index - 1].focus();
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-      const verificationCode = code.join("");
-      alert (verificationCode);
+    const verificationCode = code.join("");
+    try {
+      await verifyEmail(verificationCode);
+      navigate("/login");
+      toast.success("Email verified successfully");
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     if (code.every((digit) => digit !== "")) {
       handleSubmit(new Event("submit"));
@@ -75,7 +87,8 @@ export default function VerifyEmail() {
                   className="w-12 h-12 text-center text-2xl font-bold bg-gray-700 text-white border-2 border-gray-600 rounded-lg focus:border-green-500 focus:outline-none"
                 />
               ))}
-            </div>
+                      </div>
+                      {error&& <p className="text-semibold mt-2 text-red-500">{error}</p>}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

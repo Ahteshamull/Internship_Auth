@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import VerifyEmail from "./Pages/VerifyEmail";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/verify-email" element={<VerifyEmail/>}/>
       </Routes>
+      <Toaster/>
     </div>
   );
 }
