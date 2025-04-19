@@ -7,6 +7,7 @@ import VerifyEmail from "./Pages/VerifyEmail";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./Store/authStore";
 import Home from "./Pages/Home";
+import LoadingSpinner from "./Components/LoadingSpinner";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
@@ -33,8 +34,8 @@ export default function App() {
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-  console.log(isAuthenticated);
-  console.log(user);
+
+  if (isCheckingAuth) return <LoadingSpinner />;
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900  to-emerald-900 flex items-center justify-center relative overflow-hidden">
       <FloatingShape

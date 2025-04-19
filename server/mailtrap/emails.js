@@ -1,4 +1,8 @@
-import { PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE } from "./emailTemplate.js";
+import {
+  PASSWORD_RESET_REQUEST_TEMPLATE,
+  PASSWORD_RESET_SUCCESS_TEMPLATE,
+  VERIFICATION_EMAIL_TEMPLATE,
+} from "./emailTemplate.js";
 import { mailtrapClient, sender } from "./mailtrap.js";
 
 export const sendVerificationEmail = async (email, verificationToken) => {
@@ -14,7 +18,6 @@ export const sendVerificationEmail = async (email, verificationToken) => {
       ),
       category: "Email Verification",
     });
-   
   } catch (error) {
     console.log("error", error);
     throw new Error("Failed to send verification email");
@@ -28,12 +31,9 @@ export const sendWelcomeEmail = async (email, name) => {
       to: recipient,
       template_uuid: "5e46756b-33f0-4c8f-9f68-668da9fc729d",
       template_variables: {
-        
-      "Hasan": name
-    
+        Hasan: name,
       },
     });
-   
   } catch (error) {
     console.log("error", error);
     throw new Error("Failed to send verification email");
@@ -71,4 +71,4 @@ export const resetSuccessEmail = async (email) => {
     console.log("error", error);
     throw new Error("Failed to send verification email");
   }
-}
+};
