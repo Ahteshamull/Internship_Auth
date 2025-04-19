@@ -9,10 +9,6 @@ export default function Signup() {
   	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
