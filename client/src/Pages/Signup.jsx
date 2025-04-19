@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Input from "../Components/Input";
-import { Eye, Loader, Lock, Mail, User } from "lucide-react";
+import { Loader, Lock, Mail, User } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import PasswordStrengthMeter from "../Components/PasswordStrength";
 import { useAuthStore } from "./../Store/authStore";
@@ -15,11 +15,12 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+   
     try {
       await signup(email, password, name);
       navigate("/verify-email");
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 
