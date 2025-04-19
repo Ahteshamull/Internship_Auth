@@ -87,8 +87,10 @@ export default function VerifyEmail() {
                   className="w-12 h-12 text-center text-2xl font-bold bg-gray-700 text-white border-2 border-gray-600 rounded-lg focus:border-green-500 focus:outline-none"
                 />
               ))}
-                      </div>
-                      {error&& <p className="text-semibold mt-2 text-red-500">{error}</p>}
+            </div>
+            {error && (
+              <p className="font-semibold mt-2 text-red-500">{error}</p>
+            )}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
