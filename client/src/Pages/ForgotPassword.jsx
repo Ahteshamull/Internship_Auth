@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import { ArrowLeft, Loader, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useAuthStore } from "../Store/authStore";
 import Input from "../Components/Input";
 

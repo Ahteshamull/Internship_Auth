@@ -9,6 +9,7 @@ import LoadingSpinner from "./Components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./Store/authStore";
 import ForgotPassword from "./Pages/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
@@ -112,6 +113,14 @@ export default function App() {
           element={
             <ReAuthenticatedUser>
               <ForgotPassword />
+            </ReAuthenticatedUser>
+          }
+        />
+        <Route
+          path="/reset-password/:token"
+          element={
+            <ReAuthenticatedUser>
+              <ResetPassword />
             </ReAuthenticatedUser>
           }
         />
