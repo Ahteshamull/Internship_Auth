@@ -39,17 +39,20 @@ export default function VerifyEmail() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const verificationCode = code.join("");
-    try {
-      await verifyEmail(verificationCode);
-      navigate("/");
-      toast.success("Email verified successfully");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+   const verificationCode = code.join("");
+
+   try {
+     await verifyEmail(verificationCode);
+     toast.success("Email verified successfully");
+     navigate("/");
+   } catch (error) {
+     console.log(error);
+     toast.error("Verification failed. Please try again.");
+   }
+ };
+
 
   useEffect(() => {
     if (code.every((digit) => digit !== "")) {

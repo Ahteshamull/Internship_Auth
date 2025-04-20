@@ -74,7 +74,7 @@ export const sendWelcomeEmail = async (email, name) => {
       from: process.env.OTP_EMAIL,
       to: email,
       subject: " Welcome to our website",
-      html: WELCOME_EMAIL_TEMPLATE.replace("{name}", name),
+      html: WELCOME_EMAIL_TEMPLATE.replace("{name}", { Hasan: name }),
     });
   } catch (error) {
     console.log("error", error);
@@ -123,7 +123,7 @@ export const sendPasswordResetEmail = async (email, resetPasswordLink) => {
     console.log("error", error);
     throw new Error("Failed to send verification email");
   }
-}
+};
 
 // export const resetSuccessEmail = async (email) => {
 //   const recipient = [{ email }];
@@ -160,4 +160,4 @@ export const resetSuccessEmail = async (email) => {
     console.log("error", error);
     throw new Error("Failed to send verification email");
   }
-}
+};

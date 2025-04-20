@@ -108,7 +108,7 @@ export const WELCOME_EMAIL_TEMPLATE = `
           <!-- Logo -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo" style="max-width: 150px;">
+              <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="My Company" style="max-width: 150px;">
             </td>
           </tr>
           <!-- Content -->
