@@ -214,3 +214,23 @@ export const checkAuth = async (req, res) => {
     });
   }
 };
+
+export const updateProfile = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Unauthorized: User not found" });
+    }
+    user.name = name;
+    await user.save();
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+  }
+};

@@ -7,10 +7,12 @@ import {
   verifyEmail,
   resetPassword,
   checkAuth,
+  updateProfile,
 } from "../controller/auth.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 const router = Router();
 router.get("/check-auth", verifyToken,checkAuth)
+router.get("/update-profile", verifyToken,updateProfile)
 
 router.post("/login", login);
 router.post("/registration", registration);
