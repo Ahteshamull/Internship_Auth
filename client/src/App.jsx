@@ -8,16 +8,16 @@ import Home from "./Pages/Home";
 import LoadingSpinner from "./Components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./Store/authStore";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
-
 
   console.log("ProtectedRoute:", { isAuthenticated, user });
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
-  }else if(!user) return <Navigate to="/login" replace />
+  } else if (!user) return <Navigate to="/login" replace />;
 
   if (!user.isVerify) {
     return <Navigate to="/verify-email" replace />;
@@ -104,6 +104,15 @@ export default function App() {
             ) : (
               <Navigate to="/" replace />
             )
+          }
+        />
+
+        <Route
+          path="/forgot-password"
+          element={
+            <ReAuthenticatedUser>
+              <ForgotPassword />
+            </ReAuthenticatedUser>
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
