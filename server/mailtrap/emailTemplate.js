@@ -93,3 +93,50 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 </body>
 </html>
 `;
+export const WELCOME_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Our Member</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Helvetica, Arial, sans-serif; background-color: #f4f4f4;">
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; padding: 30px; border-radius: 8px;">
+          <!-- Logo -->
+          <tr>
+            <td align="center" style="padding-bottom: 20px;">
+              <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo" style="max-width: 150px;">
+            </td>
+          </tr>
+          <!-- Content -->
+          <tr>
+            <td style="color: #333333; font-size: 16px; line-height: 1.6;">
+              <h2 style="margin-top: 0;">Welcome to [Your Company]!</h2>
+              <p>Hi {Name},</p>
+              <p>We're thrilled to have you on board. Thank you for joining our community!</p>
+              <p>To help you get started, click the button below:</p>
+              <!-- Button -->
+              <p style="text-align: center;">
+                <a href="[Your CTA Link]" style="display: inline-block; padding: 12px 25px; background-color: #007BFF; color: #ffffff; text-decoration: none; border-radius: 5px; font-weight: bold;">Get Started</a>
+              </p>
+              <p>If you have any questions, feel free to reply to this email — we’re always here to help.</p>
+              <p>Cheers,<br>The [Your Company] Team</p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="font-size: 13px; color: #999999; padding-top: 30px;">
+              &copy; [2025] [Hasan]. All rights reserved.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+`;
